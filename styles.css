@@ -1,0 +1,598 @@
+/* Root Theme & Variables ----------------------------------------------- */
+
+:root {
+  --bg: #03030a;
+  --deep-space: #00010a;
+  --primary-neon: #7ef8ff;
+  --accent-magenta: #d66bff;
+  --accent-cyan: #5ee7e6;
+  --glass-overlay: rgba(255, 255, 255, 0.06);
+  --card-glass-border: rgba(255, 255, 255, 0.12);
+  --text-primary: #e6f0ff;
+  --muted: #9aa7bf;
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.7);
+  --radius-xl: 18px;
+  --radius-2xl: 24px;
+
+  --font-primary: system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --text-h1: clamp(28px, 5vw, 64px);
+  --text-body: 16px;
+
+  --hud-height: 60px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at 10% 0%, #05051a 0, #010008 50%);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+}
+
+body.theme-dark {
+  color-scheme: dark;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* Accessibility helpers ------------------------------------------------ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* App Layout ----------------------------------------------------------- */
+
+#app {
+  min-height: 100vh;
+  position: relative;
+  color: var(--text-primary);
+}
+
+.main {
+  position: relative;
+  min-height: 100vh;
+  /* لم نعد نستخدم الهيدر، لذا أزلنا المسافة العلوية */
+  padding-top: 0;
+}
+
+.scene-root {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at 20% -10%, #101032 0, #00010a 55%);
+}
+
+.scene-root canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Scroll track: purely for mapping scroll to progress ------------------ */
+
+.scroll-track {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.scroll-section {
+  height: 130vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 1.5rem 3rem;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.18),
+      transparent 40%
+    ),
+    transparent;
+}
+
+.section-title {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  backdrop-filter: blur(12px);
+  background: linear-gradient(
+    to right,
+    rgba(3, 3, 10, 0.7),
+    rgba(34, 34, 80, 0.25)
+  );
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  opacity: 0.4;
+  transform: translateY(20px) scale(0.96);
+  transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+}
+
+/* === تم حذف الهيدر من الـ HTML، نترك ستايله فقط لو احتجته مستقبلاً ===== */
+
+.hud {
+  display: none;
+}
+
+/* Language toggle (لو استعملته مستقبلاً) ------------------------------ */
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: radial-gradient(circle at 0 0, #3a3a82 0, #101024 50%);
+  color: var(--text-primary);
+  font-size: 11px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+}
+
+.lang-toggle span {
+  opacity: 0.5;
+}
+
+.lang-toggle span.active {
+  opacity: 1;
+  text-shadow: 0 0 10px rgba(126, 248, 255, 0.8);
+}
+
+/* HUD pill ------------------------------------------------------------- */
+
+.hud-pill {
+  font-size: 11px;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 15, 35, 0.9);
+  color: var(--accent-cyan);
+}
+
+.hud-pill-hidden {
+  display: none;
+}
+
+/* Control Panel -------------------------------------------------------- */
+
+.control-panel {
+  position: fixed;
+  left: 1.5rem;      /* أقصى اليسار */
+  bottom: 1.5rem;    /* أسفل الشاشة */
+  right: auto;
+  top: auto;
+  transform: none;   /* إلغاء أي تمركز سابق بالمنتصف */
+  z-index: 40;       /* فوق الخلفية */
+}
+
+
+/* لم يعد لدينا زر منيو، لذلك لا نستخدم control-panel-toggle */
+.control-panel-toggle {
+  display: none;
+}
+
+/* لوحة التحكم دائما ظاهرة */
+.control-panel-body {
+  pointer-events: auto;
+  padding: 0.6rem 0.9rem;
+  background: radial-gradient(circle at 0 0, #2b2b5f 0, #050513 55%);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+/* مجموعة زر التشغيل + السلايدر + مؤشر السرعة */
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.control-group--play-speed {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* زر التشغيل/الإيقاف كأيقونة دائرية */
+.play-btn {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  min-height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: radial-gradient(circle at 20% 0%, #252558 0, #090917 50%);
+  color: var(--text-primary);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.play-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px rgba(126, 248, 255, 0.7);
+  border-color: rgba(126, 248, 255, 0.9);
+}
+
+/* شريط السرعة بدون نص فوقه */
+#speed-slider {
+  width: clamp(160px, 30vw, 260px);
+  accent-color: var(--accent-cyan);
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  position: relative;
+}
+
+/* track */
+#speed-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to left,
+    rgba(214, 107, 255, 0.7),
+    rgba(94, 231, 230, 0.9)
+  );
+}
+#speed-slider::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to left,
+    rgba(214, 107, 255, 0.7),
+    rgba(94, 231, 230, 0.9)
+  );
+}
+
+/* thumb */
+#speed-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #02020a;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(126, 248, 255, 0.9);
+  margin-top: -5px;
+}
+#speed-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #02020a;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(126, 248, 255, 0.9);
+}
+
+/* مؤشر السرعة (أيقونة فقط) */
+.speed-indicator {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--accent-cyan);
+  background: radial-gradient(circle at 20% 0, #233769 0, #040414 55%);
+  box-shadow: 0 0 16px rgba(126, 248, 255, 0.4);
+}
+
+/* low power checkbox (مخفي) */
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Buttons -------------------------------------------------------------- */
+
+.btn-ghost {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: transparent;
+  color: var(--text-primary);
+  padding: 0.25rem 0.75rem;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-icon {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--text-primary);
+  font-size: 12px;
+  padding: 0.2rem 0.7rem;
+  cursor: pointer;
+}
+
+/* Splash --------------------------------------------------------------- */
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 10% 0%, #1b1b5f 0, #020010 55%);
+  color: var(--text-primary);
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.splash-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-inner {
+  text-align: center;
+  max-width: 480px;
+  padding: 1.5rem;
+}
+
+.splash-title {
+  font-size: var(--text-h1);
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.splash-title-en {
+  display: block;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--primary-neon);
+}
+
+.splash-title-ar {
+  display: block;
+  font-weight: 600;
+}
+
+.splash-subtitle {
+  margin-bottom: 0.75rem;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.splash-developer {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.splash-arrow {
+  margin-top: 1.5rem;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow-core {
+  width: 14px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+
+.arrow-core::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 3px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--primary-neon);
+  transform: translate(-50%, 30%);
+  animation: arrow-pulse 1.1s infinite ease-in-out;
+}
+
+@keyframes arrow-pulse {
+  0% {
+    transform: translate(-50%, 30%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 180%);
+    opacity: 0;
+  }
+}
+
+/* Info Card ------------------------------------------------------------ */
+
+.info-card {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  background: radial-gradient(
+    circle at 50% 0,
+    rgba(126, 248, 255, 0.16),
+    rgba(0, 0, 0, 0.96)
+  );
+  backdrop-filter: blur(18px);
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.info-card--hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.info-card-glass {
+  max-width: 860px;
+  width: calc(100% - 2rem);
+  border-radius: var(--radius-2xl);
+  padding: 1.3rem 1.5rem;
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.01)
+    ),
+    radial-gradient(circle at 0 0, rgba(126, 248, 255, 0.22), transparent 50%),
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(214, 107, 255, 0.12),
+      transparent 50%
+    );
+  border: 1px solid var(--card-glass-border);
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  gap: 1.25rem;
+}
+
+.info-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.info-card-title {
+  font-size: 20px;
+}
+
+.info-card-subtitle {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.info-card-body {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: 1.25rem;
+}
+
+.info-card-preview {
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: radial-gradient(circle at 20% 0, #374ac2 0, #060713 55%);
+  overflow: hidden;
+  position: relative;
+}
+
+.info-card-details {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem 1.25rem;
+}
+
+.info-row dt {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 0.15rem;
+}
+
+.info-row dd {
+  font-size: 13px;
+  margin: 0;
+}
+
+/* Responsive ----------------------------------------------------------- */
+
+@media (max-width: 700px) {
+  .info-card-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* RTL tweaks ----------------------------------------------------------- */
+
+html[dir="rtl"] .info-card-details {
+  direction: rtl;
+}
+
+/* Focus outlines ------------------------------------------------------- */
+
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--primary-neon);
+  outline-offset: 2px;
+}
+
+/* Fallback when canvas unsupported ------------------------------------ */
+
+.no-canvas .scene-root {
+  display: none;
+}
+
+.no-canvas .scroll-track {
+  padding: 2rem 1.5rem;
+}
+
+.no-canvas .scroll-section {
+  height: auto;
+}
+
+/* Utility -------------------------------------------------------------- */
+
+.hidden {
+  display: none !important;
+}
+#play-pause-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: radial-gradient(circle at 30% 30%, #161827, #050512);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.05),
+              0 8px 18px rgba(0,0,0,0.6);
+  color: #ffffff;
+  font-size: 18px;
+}
+
+/* الأيقونة الافتراضية (إيقاف) = زر تشغيل */
+#play-pause-btn::before {
+  content: "▶";  /* Play */
+}
+
+/* لما يكون في حالة تشغيل نعرض أيقونة الإيقاف */
+#play-pause-btn[data-state="playing"]::before {
+  content: "⏸"; /* Pause */
+}

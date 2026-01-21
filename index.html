@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Space Experience — تجربة الفضاء</title>
+    <meta
+      name="description"
+      content="Space Experience — Interactive procedural space journey from galaxies to the Solar System. تجربة الفضاء التفاعلية من المجرات إلى النظام الشمسي."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#03030A" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="theme-dark no-scroll">
+    <div id="app">
+      <!-- Initial Splash (disappears on first scroll / key / touch) -->
+      <div id="splash" class="splash" aria-hidden="false">
+        <div class="splash-inner">
+          <h1 class="splash-title">
+            <span class="splash-title-en">Space Experience</span>
+            <span class="splash-title-ar">تجربة الفضاء</span>
+          </h1>
+          <p class="splash-subtitle" data-i18n="scrollDown">
+            Scroll down to begin
+          </p>
+          <p class="splash-developer">
+            <span data-i18n="developerBy">Developer : </span><br>
+            <strong>Muhammad Mousa Al-Bothom</strong>
+          </p>
+          <div class="splash-arrow" aria-hidden="true">
+            <span class="arrow-core"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Control Panel (always open, بدون زر منيو) -->
+      <section class="control-panel" aria-label="Scene controls">
+        <div class="control-panel-body" aria-hidden="false">
+          <div class="control-group control-group--play-speed">
+            <!-- زر تشغيل/إيقاف كأيقونة فقط -->
+            <button
+            id="play-pause-btn"
+            class="play-btn"
+            type="button"
+            aria-label="تشغيل"
+            data-state="paused"
+          ></button>
+          
+
+            <!-- منزلق السرعة بدون عنوان نصّي فوقه -->
+            <input
+              id="speed-slider"
+              type="range"
+              min="0.1"
+              max="2"
+              step="0.05"
+              value="0.18"
+            />
+
+            <!-- مؤشر السرعة (أيقونة/شكل فقط) -->
+            <div
+              id="speed-indicator"
+              class="speed-indicator"
+              aria-hidden="true"
+            >
+              🚀
+            </div>
+            <button id="lang-toggle" class="lang-toggle" type="button" aria-label="تبديل اللغة Language toggle">
+              <span data-lang="en">EN</span>
+              <span data-lang="ar" class="active">ع</span>
+            </button>
+          </div>
+
+          <!-- low power ثابت ومخفي في الواجهة، بس مخلي الـ checkbox عشان لو حاب ترجع له -->
+          <div class="control-group control-group--lowpower hidden">
+            <label class="checkbox-label">
+              <input id="low-quality-toggle" type="checkbox" checked />
+              <span>Low-power</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scene / Scroll container -->
+      <main id="main" class="main" tabindex="-1">
+        <!-- Visually-hidden narrative progress for screen readers -->
+        <div
+          id="narrative-status"
+          class="sr-only"
+          aria-live="polite"
+        ></div>
+
+        <!-- Layered canvases -->
+        <div id="scene-root" class="scene-root" aria-hidden="true">
+          <canvas id="canvas-stars"></canvas>
+          <canvas id="canvas-galaxies"></canvas>
+          <canvas id="canvas-foreground"></canvas>
+        </div>
+
+        <!-- Scroll track driving progress -->
+        <div class="scroll-track">
+          <section class="scroll-section" data-section="galaxies">
+            <h2 class="section-title">Galaxies · المجرات</h2>
+          </section>
+
+          <section class="scroll-section" data-section="milkyway">
+            <h2 class="section-title">Milky Way · درب التبانة</h2>
+          </section>
+
+          <section class="scroll-section" data-section="clusters">
+            <h2 class="section-title">Star Clusters · عناقيد النجوم</h2>
+          </section>
+
+          <section class="scroll-section" data-section="solarsystem">
+            <h2 class="section-title">Solar System · النظام الشمسي</h2>
+          </section>
+
+          <section class="scroll-section" data-section="deep">
+            <h2 class="section-title">Deep Space · الفضاء العميق</h2>
+          </section>
+        </div>
+      </main>
+
+      <!-- Object Info Card (planet, moon, galaxy, black hole ...) -->
+      <aside
+        id="planet-info"
+        class="info-card info-card--hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="planet-info-title"
+      >
+        <div class="info-card-glass">
+          <div class="info-card-header">
+            <div>
+              <h3 id="planet-info-title" class="info-card-title"></h3>
+              <p id="planet-info-subtitle" class="info-card-subtitle"></p>
+            </div>
+            <button
+              id="info-close-btn"
+              type="button"
+              class="btn-icon"
+              data-i18n="close"
+            >
+              إغلاق
+            </button>
+          </div>
+          <div class="info-card-body">
+            <div class="info-card-preview">
+              <canvas
+                id="planet-preview-canvas"
+                aria-hidden="true"
+              ></canvas>
+            </div>
+            <dl class="info-card-details">
+              <div class="info-row">
+                <dt data-i18n="type">Type</dt>
+                <dd id="planet-type"></dd>
+              </div>
+              <div class="info-row">
+                <dt data-i18n="distance">Distance from Sun</dt>
+                <dd id="planet-distance"></dd>
+              </div>
+              <div class="info-row">
+                <dt data-i18n="radius">Radius</dt>
+                <dd id="planet-radius"></dd>
+              </div>
+              <div class="info-row">
+                <dt data-i18n="mass">Mass</dt>
+                <dd id="planet-mass"></dd>
+              </div>
+              <div class="info-row">
+                <dt data-i18n="orbitalPeriod">Orbital Period</dt>
+                <dd id="planet-orbit"></dd>
+              </div>
+              <div class="info-row">
+                <dt data-i18n="rotation">Rotation Period</dt>
+                <dd id="planet-rotation"></dd>
+              </div>
+              <div class="info-row">
+                <dt data-i18n="atmosphere">Atmosphere</dt>
+                <dd id="planet-atmosphere"></dd>
+              </div>
+              <div class="info-row">
+                <dt data-i18n="discoverer">Discovery</dt>
+                <dd id="planet-discovery"></dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

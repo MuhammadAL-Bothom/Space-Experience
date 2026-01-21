@@ -1,0 +1,33 @@
+{
+    "sectionKeys": ["galaxies", "milkyway", "clusters", "solarsystem", "deep"],
+  
+    "sections": [
+      { "key": "galaxies", "title": { "en": "Galaxies", "ar": "المجرات" } },
+      { "key": "milkyway", "title": { "en": "Milky Way", "ar": "درب التبانة" } },
+      { "key": "clusters", "title": { "en": "Star Clusters", "ar": "عناقيد النجوم" } },
+      { "key": "solarsystem", "title": { "en": "Solar System", "ar": "النظام الشمسي" } },
+      { "key": "deep", "title": { "en": "Deep Space", "ar": "الفضاء العميق" } }
+    ],
+  
+    "phases": {
+      "starsInsideGalaxy": { "start": 0.18, "end": 0.45 },
+      "dustPhase": { "start": 0.38, "end": 0.7 },
+      "meteorPhase": { "start": 0.7, "end": 1.0 },
+  
+      "intoMilky": { "start": 0.18, "end": 0.4 },
+      "clustersPhase": { "start": 0.25, "end": 0.45 },
+      "afterMilky": { "start": 0.4, "end": 0.6 },
+      "solarPhase": { "start": 0.55, "end": 0.9 },
+  
+      "bigGalaxyFadeOut": { "start": 0.55, "end": 0.9 }
+    },
+  
+    "narrativeStatus": {
+      "galaxies": { "en": "Galaxies panorama", "ar": "بانوراما المجرات" },
+      "milkyway": { "en": "Entering the Milky Way", "ar": "الدخول إلى درب التبانة" },
+      "clusters": { "en": "Star clusters & dust", "ar": "عناقيد النجوم والغبار" },
+      "solarsystem": { "en": "Exploring the Solar System", "ar": "استكشاف النظام الشمسي" },
+      "deep": { "en": "Deep space objects ahead", "ar": "أجسام الفضاء العميق أمامك" }
+    }
+  }
+  

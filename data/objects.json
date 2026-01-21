@@ -1,0 +1,246 @@
+{
+    "planets": [
+      {
+        "id": "mercury",
+        "name": { "en": "Mercury", "ar": "عطارد" },
+        "type": "Planet",
+        "radius_km": 2439.7,
+        "mass_kg": 3.285e23,
+        "orbital_period_days": 88,
+        "rotation_period_hours": 1407.6,
+        "distance_from_sun_km": 57900000,
+        "atmosphere": "Thin exosphere",
+        "discovery": "Known since ancient times",
+        "orbitRadiusNorm": 0.18,
+        "ui": { "accent": "#c0c0c0" },
+        "textureParams": {
+          "baseColor": "#b4b5bd",
+          "specular": 0.12,
+          "style": "rocky",
+          "patchColor": "#7c7e85"
+        }
+      },
+      {
+        "id": "venus",
+        "name": { "en": "Venus", "ar": "الزهرة" },
+        "type": "Planet",
+        "radius_km": 6051.8,
+        "mass_kg": 4.867e24,
+        "orbital_period_days": 225,
+        "rotation_period_hours": -5832.5,
+        "distance_from_sun_km": 108200000,
+        "atmosphere": "Thick CO₂ clouds",
+        "discovery": "Known since ancient times",
+        "orbitRadiusNorm": 0.27,
+        "ui": { "accent": "#ffbd7a" },
+        "textureParams": {
+          "baseColor": "#e6c18a",
+          "specular": 0.18,
+          "style": "cloudy",
+          "cloudColor": "#f5deb5"
+        }
+      },
+      {
+        "id": "earth",
+        "name": { "en": "Earth", "ar": "الأرض" },
+        "type": "Planet",
+        "radius_km": 6371,
+        "mass_kg": 5.972e24,
+        "orbital_period_days": 365.25,
+        "rotation_period_hours": 23.93,
+        "distance_from_sun_km": 149597870,
+        "atmosphere": "N₂-O₂ with water clouds",
+        "discovery": "You are here",
+        "orbitRadiusNorm": 0.38,
+        "ui": { "accent": "#5EE7E6" },
+        "textureParams": {
+          "baseColor": "#20508e",
+          "specular": 0.28,
+          "style": "earthLike",
+          "landColor": "#3faf62",
+          "iceColor": "#f7fbff",
+          "cloudColor": "rgba(255,255,255,0.6)"
+        }
+      },
+      {
+        "id": "mars",
+        "name": { "en": "Mars", "ar": "المريخ" },
+        "type": "Planet",
+        "radius_km": 3389.5,
+        "mass_kg": 6.39e23,
+        "orbital_period_days": 687,
+        "rotation_period_hours": 24.6,
+        "distance_from_sun_km": 227900000,
+        "atmosphere": "Thin CO₂",
+        "discovery": "Known since ancient times",
+        "orbitRadiusNorm": 0.5,
+        "ui": { "accent": "#ff7b5c" },
+        "textureParams": {
+          "baseColor": "#b55239",
+          "specular": 0.18,
+          "style": "rockyRed",
+          "patchColor": "#7b3725"
+        }
+      },
+      {
+        "id": "jupiter",
+        "name": { "en": "Jupiter", "ar": "المشتري" },
+        "type": "Planet",
+        "radius_km": 69911,
+        "mass_kg": 1.898e27,
+        "orbital_period_days": 4333,
+        "rotation_period_hours": 9.93,
+        "distance_from_sun_km": 778500000,
+        "atmosphere": "Hydrogen & Helium",
+        "discovery": "Known since ancient times",
+        "orbitRadiusNorm": 0.8,
+        "ui": { "accent": "#f5c49a" },
+        "textureParams": {
+          "baseColor": "#d29a67",
+          "specular": 0.2,
+          "style": "gasGiant",
+          "bands": ["#f7e0c4", "#d79a64", "#b47340", "#e9c49c"],
+          "spotColor": "#c4513a"
+        }
+      },
+      {
+        "id": "saturn",
+        "name": { "en": "Saturn", "ar": "زحل" },
+        "type": "Planet",
+        "radius_km": 58232,
+        "mass_kg": 5.683e26,
+        "orbital_period_days": 10759,
+        "rotation_period_hours": 10.7,
+        "distance_from_sun_km": 1434000000,
+        "atmosphere": "Hydrogen & Helium",
+        "discovery": "Known since ancient times",
+        "orbitRadiusNorm": 1.0,
+        "ui": { "accent": "#f3e3b0" },
+        "textureParams": {
+          "baseColor": "#dec58d",
+          "specular": 0.22,
+          "style": "gasGiant",
+          "bands": ["#f5e9c4", "#d8c28a", "#c8a96b", "#efe2bf"],
+          "rings": true
+        }
+      },
+      {
+        "id": "uranus",
+        "name": { "en": "Uranus", "ar": "أورانوس" },
+        "type": "Planet",
+        "radius_km": 25362,
+        "mass_kg": 8.681e25,
+        "orbital_period_days": 30687,
+        "rotation_period_hours": -17.2,
+        "distance_from_sun_km": 2871000000,
+        "atmosphere": "H₂, He, CH₄",
+        "discovery": "William Herschel, 1781",
+        "orbitRadiusNorm": 1.3,
+        "ui": { "accent": "#92f6ff" },
+        "textureParams": {
+          "baseColor": "#66d9e6",
+          "specular": 0.24,
+          "style": "iceGiant",
+          "bands": ["#66d9e6", "#5ac9d9", "#7fe6f1"]
+        }
+      },
+      {
+        "id": "neptune",
+        "name": { "en": "Neptune", "ar": "نبتون" },
+        "type": "Planet",
+        "radius_km": 24622,
+        "mass_kg": 1.024e26,
+        "orbital_period_days": 60190,
+        "rotation_period_hours": 16.1,
+        "distance_from_sun_km": 4495000000,
+        "atmosphere": "H₂, He, CH₄",
+        "discovery": "Le Verrier & Galle, 1846",
+        "orbitRadiusNorm": 1.6,
+        "ui": { "accent": "#5bb7ff" },
+        "textureParams": {
+          "baseColor": "#3b6fd9",
+          "specular": 0.26,
+          "style": "iceGiant",
+          "bands": ["#3b6fd9", "#345fbf", "#4679f0"]
+        }
+      }
+    ],
+    "moons": [
+      { "id": "moon", "planetId": "earth", "name": { "en": "Moon", "ar": "القمر" }, "type": "Moon", "radius_km": 1737, "distance_km": 384400, "orbital_period_days": 27.3 },
+      { "id": "phobos", "planetId": "mars", "name": { "en": "Phobos", "ar": "فوبوس" }, "type": "Moon", "radius_km": 11.27, "distance_km": 9376, "orbital_period_days": 0.319 },
+      { "id": "deimos", "planetId": "mars", "name": { "en": "Deimos", "ar": "ديموس" }, "type": "Moon", "radius_km": 6.2, "distance_km": 23460, "orbital_period_days": 1.26 },
+  
+      { "id": "io", "planetId": "jupiter", "name": { "en": "Io", "ar": "آيو" }, "type": "Moon", "radius_km": 1821.6, "distance_km": 421700, "orbital_period_days": 1.77 },
+      { "id": "europa", "planetId": "jupiter", "name": { "en": "Europa", "ar": "أوروبا" }, "type": "Moon", "radius_km": 1560.8, "distance_km": 670900, "orbital_period_days": 3.55 },
+      { "id": "ganymede", "planetId": "jupiter", "name": { "en": "Ganymede", "ar": "غانيميد" }, "type": "Moon", "radius_km": 2634.1, "distance_km": 1070400, "orbital_period_days": 7.15 },
+      { "id": "callisto", "planetId": "jupiter", "name": { "en": "Callisto", "ar": "كاليستو" }, "type": "Moon", "radius_km": 2410.3, "distance_km": 1882700, "orbital_period_days": 16.69 },
+  
+      { "id": "titan", "planetId": "saturn", "name": { "en": "Titan", "ar": "تيتان" }, "type": "Moon", "radius_km": 2575, "distance_km": 1221870, "orbital_period_days": 15.95 },
+      { "id": "enceladus", "planetId": "saturn", "name": { "en": "Enceladus", "ar": "إنسيلادوس" }, "type": "Moon", "radius_km": 252.1, "distance_km": 238020, "orbital_period_days": 1.37 },
+      { "id": "rhea", "planetId": "saturn", "name": { "en": "Rhea", "ar": "ريا" }, "type": "Moon", "radius_km": 763.8, "distance_km": 527040, "orbital_period_days": 4.52 },
+  
+      { "id": "miranda", "planetId": "uranus", "name": { "en": "Miranda", "ar": "ميراندا" }, "type": "Moon", "radius_km": 235.8, "distance_km": 129900, "orbital_period_days": 1.41 },
+      { "id": "ariel", "planetId": "uranus", "name": { "en": "Ariel", "ar": "أرييل" }, "type": "Moon", "radius_km": 578.9, "distance_km": 190900, "orbital_period_days": 2.52 },
+      { "id": "umbriel", "planetId": "uranus", "name": { "en": "Umbriel", "ar": "أومبرييل" }, "type": "Moon", "radius_km": 584.7, "distance_km": 266000, "orbital_period_days": 4.14 },
+      { "id": "titania", "planetId": "uranus", "name": { "en": "Titania", "ar": "تيتانيا" }, "type": "Moon", "radius_km": 788.9, "distance_km": 435800, "orbital_period_days": 8.71 },
+      { "id": "oberon", "planetId": "uranus", "name": { "en": "Oberon", "ar": "أوبرون" }, "type": "Moon", "radius_km": 761.4, "distance_km": 583500, "orbital_period_days": 13.46 },
+  
+      { "id": "triton", "planetId": "neptune", "name": { "en": "Triton", "ar": "تريتون" }, "type": "Moon", "radius_km": 1353.4, "distance_km": 354800, "orbital_period_days": -5.88 }
+    ],
+    "galaxies": [
+      { "id": "milkyway", "name": { "en": "Milky Way", "ar": "درب التبانة" }, "type": "Galaxy", "distance_ly": 0 },
+      { "id": "andromeda", "name": { "en": "Andromeda", "ar": "مجرة المرأة المسلسلة" }, "type": "Galaxy", "distance_ly": 2537000 },
+      { "id": "whirlpool", "name": { "en": "Whirlpool", "ar": "مجرة الدوّامة" }, "type": "Galaxy", "distance_ly": 23000000 }
+    ],
+    "clusters": [
+      { "id": "pleiades", "name": { "en": "Pleiades", "ar": "الثريا" }, "type": "Star Cluster", "distance_ly": 444 },
+      { "id": "omega-centauri", "name": { "en": "Omega Centauri", "ar": "أوميغا قنطورس" }, "type": "Star Cluster", "distance_ly": 15800 }
+    ],
+    "blackHoles": [
+      { "id": "sgr-a", "name": { "en": "Sagittarius A*", "ar": "القوس A*" }, "type": "Black Hole", "distance_ly": 26000 }
+    ],
+    "constellations": [
+      {
+        "id": "orion",
+        "name": { "en": "Orion", "ar": "الجبار" },
+        "type": "Constellation",
+        "stars": [
+          { "x": -0.15, "y": -0.45 },
+          { "x": 0.0, "y": -0.2 },
+          { "x": 0.12, "y": 0.05 },
+          { "x": -0.18, "y": 0.1 },
+          { "x": -0.02, "y": 0.4 }
+        ],
+        "lines": [
+          [0, 1],
+          [1, 2],
+          [1, 3],
+          [3, 4],
+          [2, 4]
+        ]
+      },
+      {
+        "id": "big-dipper",
+        "name": { "en": "Big Dipper", "ar": "الدب الأكبر" },
+        "type": "Constellation",
+        "stars": [
+          { "x": -0.8, "y": -0.1 },
+          { "x": -0.5, "y": -0.2 },
+          { "x": -0.25, "y": -0.15 },
+          { "x": 0.0, "y": -0.05 },
+          { "x": 0.22, "y": 0.0 },
+          { "x": 0.45, "y": 0.1 },
+          { "x": 0.7, "y": 0.12 }
+        ],
+        "lines": [
+          [0, 1],
+          [1, 2],
+          [2, 3],
+          [3, 4],
+          [4, 5],
+          [5, 6]
+        ]
+      }
+    ]
+  }
+  
